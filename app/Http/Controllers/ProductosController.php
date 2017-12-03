@@ -44,10 +44,17 @@ class ProductosController extends Controller
         return response()->json($producto, 200);
     }
 
+    // Este definitivamente no funciona por ahora
+    // parece que guarda y devuelve un id y todo
+    // pero después el archivo no está por ningún lado
     public function upload(Request $request){
-        $path = $request->file('file')->store('avatars');
+        if($request->file('file'))
+        $file = $request->file('file')->store('file');
+        // $path = $request->file('file')->store('avatars');
         
-        return $path;
+        // \Storage::disk('local')->put('ARCHIVOPRUEBA', \File::get($file));
+
+        return 'Archivo guardado';
     }
 
     public function delete($id){
