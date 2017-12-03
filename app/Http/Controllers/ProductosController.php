@@ -45,12 +45,11 @@ class ProductosController extends Controller
     }
 
     public function upload(Request $request){
-        if($request->file_exists)
-        $file = $request->file('foto')->store('foto');
+        $path = $request->file('file')->store('avatars');
         
-        return "archivo guardado";
-       
+        return $path;
     }
+
     public function delete($id){
         $producto = Producto::findOrFail($id);
         $producto->delete();
