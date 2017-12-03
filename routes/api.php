@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\ProductosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,17 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Listar todos los productos
-Route::get('/productos', function (){
-    return response()-> json(\App\Producto::all());
-});
+Route::get('/productos', 'ProductosController@index');
 
 //Devolver un solo producto
+Route::get('/productos/{id}', 'ProductosController@show');
 
-
-//Eliminar un producto
-
+//Guardar un producto
+Route::post('/productos', 'ProductosController@store');
 
 //Actualizar un producto
-
+Route::put('/productos/{id}', 'ProductosController@update');
 
 //Subir un fichero o imagen a un producto
+Route::post('productos/file-system', 'ProductosController@upload');
+
+//Eliminar un producto
+Route::delete('/productos/{id}', 'ProductosController@delete');

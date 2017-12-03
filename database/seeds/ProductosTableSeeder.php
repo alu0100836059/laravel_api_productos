@@ -12,13 +12,19 @@ class ProductosTableSeeder extends Seeder
      */
     public function run()
     {
+        // Borramos lo que teníamos para comenzar desde cero la inicialización
+        Producto::truncate();
+
+        // Creamos una instancia de faker
+        $faker = \Faker\Factory::create();
+
         for($i = 1; $i <= 20; $i++){
             Producto::create([
                 'id' => null ,
-                'nombre' => 'Nombre producto: ' . $i ,
-                'descripcion' => 'Aqui iría la descripcion producto: ' . $i ,
-                'precio' => '30' . $i . ' €' ,
-                'imagen' => 'Enlace a la imagen' . $i
+                'nombre' => $faker->name,
+                'descripcion' => $faker->paragraph,
+                'precio' => $faker->numberBetween(200, 3000) . ' €' ,
+                'imagen' => $faker->imageUrl($width = 640, $height = 480)
             ]);
         }
     }
