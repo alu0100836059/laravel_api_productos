@@ -43,18 +43,12 @@ class ProductosController extends Controller
         Producto::reguard();
         return response()->json($producto, 200);
     }
-
-    // Este definitivamente no funciona por ahora
-    // parece que guarda y devuelve un id y todo
-    // pero después el archivo no está por ningún lado
+    
     public function upload(Request $request){
         if($request->file('file'))
-        $file = $request->file('file')->store('file');
-        // $path = $request->file('file')->store('avatars');
-        
-        // \Storage::disk('local')->put('ARCHIVOPRUEBA', \File::get($file));
+        $file = $request->file('file')->store('uploads/imagenes');
 
-        return 'Archivo guardado';
+        return 'Archivo guardado en /storage/app/uploads/imagenes';
     }
 
     public function delete($id){
