@@ -18,7 +18,7 @@ class CreacionProductos extends Migration
             $table->string('nombre', 50);
             $table->longText('descripcion');
             $table->string('precio', 15);
-            $table->string('imagen', 255);
+            $table->string('imagen', 255)->nullable(true);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

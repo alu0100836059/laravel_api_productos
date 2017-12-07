@@ -18,19 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Listar todos los productos
-Route::get('/productos', 'ProductosController@index');
+Route::middleware('cors')->get('/productos', 'ProductosController@index');
 
 //Devolver un solo producto
-Route::get('/productos/{id}', 'ProductosController@show');
+Route::middleware('cors')->get('/productos/{id}', 'ProductosController@show');
 
 //Guardar un producto
-Route::post('/productos', 'ProductosController@store');
+Route::middleware('cors')->post('/productos', 'ProductosController@store');
 
 //Actualizar un producto
-Route::put('/productos/{id}', 'ProductosController@update');
+Route::middleware('cors')->put('/productos/{id}', 'ProductosController@update');
 
 //Subir un fichero o imagen a un producto
-Route::post('productos/file-system', 'ProductosController@upload');
+Route::middleware('cors')->post('/upload-file', 'ProductosController@upload');
 
 //Eliminar un producto
-Route::delete('/productos/{id}', 'ProductosController@delete');
+Route::middleware('cors')->delete('/productos/{id}', 'ProductosController@delete');
